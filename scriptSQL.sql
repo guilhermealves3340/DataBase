@@ -2,7 +2,6 @@ CREATE SCHEMA proj
 
 CREATE TABLE proj.funcionarios(
 	userID			INTEGER,
-	codDep			INTEGER,
 	codCargo		INTEGER,
 	estadoCivil		INTEGER NOT NULL,
 	cargaHoraria	DOUBLE NOT NULL,
@@ -11,7 +10,6 @@ CREATE TABLE proj.funcionarios(
 	idTag			INTEGER NOT NULL,
 	CONSTRAINT pk_func_UID PRIMARY KEY(userID),
   CONSTRAINT fk_func_userID FOREIGN KEY(userID) REFERENCES proj.infoPessoais(cpf),
-  CONSTRAINT fk_func_codDep FOREIGN KEY(codDep) REFERENCES proj.departamentos(codDep),
   CONSTRAINT fk_func_codCargo FOREIGN KEY(codCargo) REFERENCES proj.cargos(codCargo),
   admissao        TIMESTAMP NOT NULL,
   demissao        TIMESTAMP
@@ -56,7 +54,7 @@ CREATE TABLE proj.departamentos(
 )
 
 CREATE TABLE proj.cargos(
-		codDep          INTEGER,
+			codDep          INTEGER,
 		codCargo        INTEGER,
     cargo           VARCHAR(10),
     CONSTRAINT pk_carg_codCargo PRIMARY KEY (codCargo),
