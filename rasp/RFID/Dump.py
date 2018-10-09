@@ -27,26 +27,26 @@ import signal
 
 continue_reading = True
 
-# Capture SIGINT for cleanup when the script is aborted
+# Capture o SIGINT para limpeza quando o script for abortado
 def end_read(signal,frame):
     global continue_reading
     print "Ctrl+C captured, ending read."
     continue_reading = False
     GPIO.cleanup()
 
-# Hook the SIGINT
+# Prenda o SIGINT
 signal.signal(signal.SIGINT, end_read)
 
-# Create an object of the class MFRC522
+# Crie um objeto da classe MFRC522
 MIFAREReader = MFRC522.MFRC522()
 
-# This loop keeps checking for chips. If one is near it will get the UID and authenticate
+# Esse loop continua verificando se há chips. Se alguém estiver por perto, receberá o UID e autenticará
 while continue_reading:
     
-    # Scan for cards    
+    # Procurar por cartões   
     (status,TagType) = MIFAREReader.MFRC522_Request(MIFAREReader.PICC_REQIDL)
 
-    # If a card is found
+    # Se uma carta for encontrada
     if status == MIFAREReader.MI_OK:
         print "Card detected"
     

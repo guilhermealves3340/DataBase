@@ -1,11 +1,14 @@
+# Programa main tabalho de SEMB
+
 # on importe le pilote
 import sys
 sys.path.append("./lib")
 import lcddriver
 from time import *
 
-import serial
+import serial 
 
+# Comunicação da raspberry com o arduino
 sr = serial.Serial('/dev/ttyACM0', 9600)
 
 # on initialise le lcd
