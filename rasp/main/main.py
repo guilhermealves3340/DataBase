@@ -28,12 +28,12 @@ lcd.lcd_clear()
 lcd.lcd_display_string("TEMPERATURA", 1)
 
 # Postgres
-conn = ''
-cur = ''
+conn = None
+cur = None
 def conect_db():
     try:
         # Conectando com a nossa base de dados
-        global conn = pg.connect("dbname=Engenharia user=postgres password=SENHA")
+        global conn = pg.connect("dbname=Engenharia user=postgres password=1997")
 
         # Criando o nosso cursor
         global cur = conn.cursor()
@@ -71,15 +71,34 @@ while continue_reading:
     # Se tivermos o UID, continue
     if status == MIFAREReader.MI_OK:
 
-        userID = int(str(uid[0])+str(uid[1])+str(uid[2])+str(uid[3]))
+        tag = int(str(uid[0])+str(uid[1])+str(uid[2])+str(uid[3]))
 
         # This is the default key for authentication
         key = [0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]
 
         # Select the scanned tag
-        MIFAREReader.MFRC522_SelectTag(userID)
+        MIFAREReader.MFRC522_SelectTag(tag)
 
         conect_db()
+        query = "SELECT userID, ativo FROM proj.tb_funcionario WHERE idTag = " + tag
+        cur.execute(query)
+        row = cur.fetchall()
+        conn.commit()
+        cur.close()
+        id = row[0]
+
+
+        if row[1] == True:
+            GPIO.output(16, 0)      # Led azull off
+            GPIO.output(20, 1)      # Led verde on
+
+            query = "SELECT "
+        
+        else:
+            GPIO.output(20, 0)
+            GPIO.output(21, 1)
+            
+
 
         
 
