@@ -3,14 +3,12 @@ CREATE SCHEMA proj;
 CREATE TABLE proj.tb_funcionario(
 	userID		    	INTEGER,
 	codCargo		    INTEGER NOT NULL,
-	estadoCivil		  INTEGER NOT NULL,             --??? 
+	estadoCivil		  INTEGER NOT NULL,              
 	cargaHoraria	  NUMERIC NOT NULL,
 	salario			    NUMERIC(7,2) NOT NULL,
 	ativo			      BOOLEAN NOT NULL,
 	idTag			      INTEGER NOT NULL,
 	CONSTRAINT pk_func_userID PRIMARY KEY(userID),
-  --CONSTRAINT fk_func_userID FOREIGN KEY(userID) REFERENCES proj.tb_infoPessoais(cpf),
-  --CONSTRAINT fk_func_codCargo FOREIGN KEY(codCargo) REFERENCES proj.tb_cargos(codCargo),
   admissao        TIMESTAMP NOT NULL,
   demissao        TIMESTAMP
 );
