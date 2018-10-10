@@ -13,6 +13,9 @@ import psycopg2 as pg
 import MFRC522
 import signal
 
+from datetime import datetime
+now = None
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(16, GPIO.OUT)        # Azul     -> Em operação
 GPIO.setup(20, GPIO.OUT)        # Verde    -> Liberado
@@ -28,15 +31,21 @@ lcd.lcd_clear()
 lcd.lcd_display_string("TEMPERATURA", 1)
 
 # Postgres
-conn = None
-cur = None
-def conect_db():
+def query(sql, rows):
     try:
         # Conectando com a nossa base de dados
-        global conn = pg.connect("dbname=Engenharia user=postgres password=1997")
+        conn = pg.connect("dbname=Engenharia user=postgres password=1997")
 
         # Criando o nosso cursor
-        global cur = conn.cursor()
+        cur = conn.cursor()
+
+        cur.execute(sql)
+        if rows != None:
+            rows = cur.fetchall()
+        conn.commit()
+        cur.close()
+
+        return rows
 
     except:
         pass
@@ -79,20 +88,27 @@ while continue_reading:
         # Select the scanned tag
         MIFAREReader.MFRC522_SelectTag(tag)
 
-        conect_db()
-        query = "SELECT userID, ativo FROM proj.tb_funcionario WHERE idTag = " + tag
-        cur.execute(query)
-        row = cur.fetchall()
-        conn.commit()
-        cur.close()
+        sql = "SELECT userID, ativo, nome, sobreNome FROM proj.tb_funcionario WHERE idTag = " + str(tag)
+        row = None
+        query(sql,row)
         id = row[0]
 
 
-        if row[1] == True:
+        if row[0][1] == 1:
             GPIO.output(16, 0)      # Led azull off
             GPIO.output(20, 1)      # Led verde on
 
-            query = "SELECT "
+            lcd.lcd_clear()         # Exibindo nome do funcionario no display
+            lcd.lcd_display_string(row[2] + " " + row[3],1)
+            now = datetime.now()
+            hr = now.hour+":"+now.minute+":"+now.second
+            lcd.lcd_display_string(hr, 2)
+
+            sql = "SELECT entrada, almoco, retorno, saida FROM proj.tb_pontos WHERE userID = " + id
+            rows = True
+            query(sql, rows)
+
+
         
         else:
             GPIO.output(20, 0)
