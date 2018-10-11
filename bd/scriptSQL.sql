@@ -35,7 +35,7 @@ CREATE TABLE proj.tb_contato(
 
 CREATE TABLE proj.tb_login(
     password        VARCHAR(15) NOT NULL,
-    user            TEXT NOT NULL,          
+    login            TEXT NOT NULL,          
     userID          INTEGER NOT NULL,
     CONSTRAINT fk_login_userID FOREIGN KEY(userID) REFERENCES proj.tb_funcionario(userID)
 );
