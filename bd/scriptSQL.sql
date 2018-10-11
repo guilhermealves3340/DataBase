@@ -54,7 +54,7 @@ CREATE TABLE proj.tb_cargos(
 );
 
 
-CREATE TABLE teste.pontos(
+CREATE TABLE proj.pontos(
 	userID		INTEGER NOT NULL,
 	dia			  DATE NOT NULL,
 	entrada		TIME NOT NULL,
