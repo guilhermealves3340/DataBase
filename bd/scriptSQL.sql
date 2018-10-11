@@ -35,7 +35,7 @@ CREATE TABLE proj.tb_contato(
 
 CREATE TABLE proj.tb_login(
     password        VARCHAR(15) NOT NULL,
-    login            TEXT NOT NULL,          
+    user            TEXT NOT NULL,          
     userID          INTEGER NOT NULL,
     CONSTRAINT fk_login_userID FOREIGN KEY(userID) REFERENCES proj.tb_funcionario(userID)
 );
@@ -54,7 +54,7 @@ CREATE TABLE proj.tb_cargos(
 );
 
 
-CREATE TABLE proj.pontos(
+CREATE TABLE teste.pontos(
 	userID		INTEGER NOT NULL,
 	dia			  DATE NOT NULL,
 	entrada		TIME NOT NULL,
