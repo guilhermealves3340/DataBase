@@ -53,15 +53,13 @@ CREATE TABLE proj.tb_cargos(
 		CONSTRAINT fk_carg_codDep FOREIGN KEY (codDep) REFERENCES proj.tb_departamentos(codDep)
 );
 
-
-CREATE TABLE teste.pontos(
+CREATE TABLE proj.pontos(
 	userID		INTEGER NOT NULL,
 	dia			  DATE NOT NULL,
 	entrada		TIME NOT NULL,
 	almoco		TIME,
 	retorno		TIME,
-	saida		  TIME,
-	ativo		  BOOLEAN
+	saida		  TIME
 );
 
 

@@ -27,8 +27,21 @@ GPIO.output(16, 1)
 lcd = lcddriver.lcd()
 lcd.lcd_clear()
 
-# Parametros: String, linha
-lcd.lcd_display_string("TEMPERATURA", 1)
+def ponto(row):
+    x = 0
+    for i in row:
+        if i:
+            x = x +1
+
+    if x == 0:
+        return 'entrada'
+    if x == 1:
+        return 'almoco'
+    if x == 2:
+        return 'retorno'
+    if x == 3:
+        return 'saida'
+        
 
 # Postgres
 def query(sql, rows):
@@ -44,8 +57,6 @@ def query(sql, rows):
             rows = cur.fetchall()
         conn.commit()
         cur.close()
-
-        return rows
 
     except:
         pass
@@ -89,31 +100,47 @@ while continue_reading:
         MIFAREReader.MFRC522_SelectTag(tag)
 
         sql = "SELECT userID, ativo, nome, sobreNome FROM proj.tb_funcionario WHERE idTag = " + str(tag)
-        row = None
+        row = True
         query(sql,row)
-        id = row[0]
+        id = str(row[0])
 
-
-        if row[0][1] == 1:
-            GPIO.output(16, 0)      # Led azull off
-            GPIO.output(20, 1)      # Led verde on
+        if row[1] == 1:
+            GPIO.output(16, 0)      # Led azull OFF
+            GPIO.output(20, 1)      # Led verde ON
 
             lcd.lcd_clear()         # Exibindo nome do funcionario no display
-            lcd.lcd_display_string(row[2] + " " + row[3],1)
+            lcd.lcd_display_string(str(row[2])+" "+str(row[3]),1)
             now = datetime.now()
-            hr = now.hour+":"+now.minute+":"+now.second
-            lcd.lcd_display_string(hr, 2)
+            hr = str(now.hour)+":"+str(now.minute)+":"+str(now.second)
+            day = str(now.date())       # AAAA-MM-DD
+            lcd.lcd_display_string(str(hr),2)
 
-            sql = "SELECT entrada, almoco, retorno, saida FROM proj.tb_pontos WHERE userID = " + id
-            rows = True
-            query(sql, rows)
+            # Query de busca 
+            sql = "SELECT entrada, almoco, retorno, saida FROM proj.tb_pontos WHERE userID = {} AND dia = {}".format(id,day)
+            rows = 1
+            query(sql,rows)
 
+            if not rows:
+                sql "INSERT INTO proj.pontos(userID,dia,entrada) VALUES({},{},{});".format(id,day,hr)
+            else:
+                sql = "UPDATE proj.pontos SET {} = {} WHERE userID = {} AND dia = {}".format(pontos(rows,hr,id,day))
 
-        
+            rows = None
+            query(sql,rows)
+
+            # Aguardando 3s
+            time.sleep(3)
+
         else:
             GPIO.output(20, 0)
             GPIO.output(21, 1)
             
+            lcd.lcd_clear()
+            lcd.lcd_display_string(str(row[2])+" "+str(row[3]),1)
+            lcd.lcd_display_string('ENTRADA RECUSADA',2)
+
+            # Aguardando 3s
+            time.sleep(3)
 
 
         
