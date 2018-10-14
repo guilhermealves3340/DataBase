@@ -128,7 +128,7 @@ while continue_reading:
             query(sql,rows)
 
             if not rows:
-                sql = "INSERT INTO proj.pontos(userID,dia,entrada) VALUES({},{},{});".format(id,day,hr)
+                sql = "INSERT INTO proj.tb_pontos(userID,dia,entrada) VALUES({},{},{});".format(id,day,hr)
             else:
                 
                 if rows[3]:
@@ -138,7 +138,7 @@ while continue_reading:
                 
                 else:
 
-                    sql = "UPDATE proj.pontos SET {} = {} WHERE userID = {} AND dia = {}".format(ponto(rows),hr,id,day)
+                    sql = "UPDATE proj.tb_pontos SET {} = {} WHERE userID = {} AND dia = {}".format(ponto(rows),hr,id,day)
                     gpio.output(11, gpio.LOW)       # Led azul OFF
                     gpio.output(12, gpio.HIGH)      # Led verde ON
                     lcd.lcd_clear()                 # Exibindo nome do funcionario no display

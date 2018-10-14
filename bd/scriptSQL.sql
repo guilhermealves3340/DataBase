@@ -1,7 +1,7 @@
 CREATE SCHEMA proj;
 
 CREATE TABLE proj.tb_funcionario(
-	userID		    	INTEGER SERIAL,
+  userID		    	INTEGER SERIAL,
 	codCargo		    INTEGER NOT NULL,
 	estadoCivil		  INTEGER NOT NULL,              
 	cargaHoraria	  NUMERIC NOT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE proj.tb_contato(
 );
 
 CREATE TABLE proj.tb_login(
-    password        VARCHAR(15) NOT NULL,
+    password        VARCHAR(32) NOT NULL,
     user            TEXT NOT NULL,          
     userID          INTEGER NOT NULL,
     CONSTRAINT fk_login_userID FOREIGN KEY(userID) REFERENCES proj.tb_funcionario(userID)
@@ -53,7 +53,7 @@ CREATE TABLE proj.tb_cargos(
 		CONSTRAINT fk_carg_codDep FOREIGN KEY (codDep) REFERENCES proj.tb_departamentos(codDep)
 );
 
-CREATE TABLE proj.pontos(
+CREATE TABLE proj.tb_pontos(
 	userID		INTEGER NOT NULL,
 	dia			  DATE NOT NULL,
 	entrada		TIME NOT NULL,
@@ -61,13 +61,3 @@ CREATE TABLE proj.pontos(
 	retorno		TIME,
 	saida		  TIME
 );
-
-
-DROP SCHEMA proj;
-DROP TABLE proj.tb_funcionario;
-DROP TABLE proj.tb_infopessoais;
-
-
--- USAR UMA TABELA PARA ALMOCO, SAIDA, RETORNO E ENTRADA
-
-
