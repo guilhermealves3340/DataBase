@@ -1,6 +1,10 @@
-#include<>
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
 #include <spi.h>    //Carregamos a livraria SPI incluida no IDE de Arduino
 #include <RC522_RFID.h>   //Carregamos a livraria RC522_RFID de Paul Kourany
+
+// Inicializa o display no endereco 0x27
+LiquidCrystal_I2C lcd(0x27,2,1,0,4,5,6,7,3, POSITIVE);
  
 #define SS_PIN 10   // Declaramos o pino SDA do Arduino
 #define RST_PIN 9   // Declaramos o pino RST do Arduino
@@ -9,16 +13,6 @@ RFID rfid(SS_PIN, RST_PIN);   //Iniciamos o objeto RFID
 String cardID;      //Declaramos uma variável de tipo string
                     //para armazenar o valor dos dados obtidos da
                     // etiqueta RFID
- 
-void setup() {
-    Serial.begin(9600); //Iniciamos a comunicação serie para ler as respostas do módulo
-    SPI.begin();        //Iniciamos a comunicação SPI
-    rfid.init();        //Iniciamos o objeto RFID
-
-    pinMode(2, OUTPUT); // Led azul -> procurando
-    pinMode(3, OUTPUT); // Led verde -> 
-    pinMode(4, OUTPUT); // Led vermelho -> acesso recusado    
-}
 
 void LED(String cor){
     if(cor == 'azul'){
@@ -41,6 +35,18 @@ void LED(String cor){
 }
 
 
+void setup() {
+    Serial.begin(9600); //Iniciamos a comunicação serie para ler as respostas do módulo
+    SPI.begin();        //Iniciamos a comunicação SPI
+    rfid.init();        //Iniciamos o objeto RFID
+
+    pinMode(2, OUTPUT); // Led azul -> procurando
+    pinMode(3, OUTPUT); // Led verde -> 
+    pinMode(4, OUTPUT); // Led vermelho -> acesso recusado    
+
+    lcd.begin (16,2);
+    lcd.setBacklight(HIGH);
+}
 
 void loop()
 {
@@ -59,4 +65,13 @@ void loop()
     
 }
 
-
+void loop()
+{
+  lcd.setCursor(0,0);
+  lcd.print("Arduino e Cia !!");
+  lcd.setCursor(0,1);
+  lcd.print("LCD e modulo I2C");
+  delay(1000);
+  lcd.setBacklight(LOW);
+  delay(1000);
+}
