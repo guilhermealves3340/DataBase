@@ -45,47 +45,50 @@ while True:
 
     cardID = str(port.readline())
 
-    sql = "SELECT userID, ativo, nome, sobreNome FROM proj.tb_funcionario WHERE idTag = "+cardID
-    row = [True]
-    query(sql,row)
-    id = str(row[0])
+    if cardID:
 
-    if row[1] == 1:
 
-        now = datetime.now()
-        hr = str(now.hour)+":"+str(now.minute)+":"+str(now.second)
-        day = str(now.date())       # AAAA-MM-DD
+        sql = "SELECT userID, ativo, nome, sobreNome FROM proj.tb_funcionario WHERE idTag = "+cardID
+        row = [True]
+        query(sql,row)
+        id = str(row[0])
 
-        # Query de busca 
-        sql = "SELECT entrada, almoco, retorno, saida FROM proj.tb_pontos WHERE userID = {} AND dia = {}".format(id,day)
-        rows = [True]
-        query(sql,rows)
+        if row[1] == 1:
 
-        if not rows:
-            sql = "INSERT INTO proj.tb_pontos(userID,dia,entrada) VALUES({},{},{});".format(id,day,hr)
-        else:
-                
-            if rows[3]:
-                port.write(1)      # Enviando para o lcd (1): 'Volte amanha'
-                sql = ''
-                
-            else:
+            now = datetime.now()
+            hr = str(now.hour)+":"+str(now.minute)+":"+str(now.second)
+            day = str(now.date())       # AAAA-MM-DD
 
-                sql = "UPDATE proj.tb_pontos SET {} = {} WHERE userID = {} AND dia = {}".format(ponto(rows),hr,id,day)
-
-                port.write(2)   # Enviando sinal para acesso liberado
-                print('PONTO REGISTRADO')
-                print(str(row[2])+" "+str(row[3]))
-                print(str(hr))
-
-        rows = None
-        if sql:
+            # Query de busca 
+            sql = "SELECT entrada, almoco, retorno, saida FROM proj.tb_pontos WHERE userID = {} AND dia = {}".format(id,day)
+            rows = [True]
             query(sql,rows)
 
-    else:
+            if not rows:
+                sql = "INSERT INTO proj.tb_pontos(userID,dia,entrada) VALUES({},{},{});".format(id,day,hr)
+            else:
+                
+                if rows[3]:
+                    port.write(1)      # Enviando para o lcd (1): 'Volte amanha'
+                    sql = ''
+                
+                else:
+
+                    sql = "UPDATE proj.tb_pontos SET {} = {} WHERE userID = {} AND dia = {}".format(ponto(rows),hr,id,day)
+
+                    port.write(2)   # Enviando sinal para acesso liberado
+                    print('PONTO REGISTRADO')
+                    print(str(row[2])+" "+str(row[3]))
+                    print(str(hr))
+
+            rows = None
+            if sql:
+                query(sql,rows)
+
+        else:
    
-        print(str(row[2])+" "+str(row[3]))
-        print('REGISTRO RECUSADO')
-        print('FUNCIONARIO NAO ATIVO')
-        port.write(3)
+            print(str(row[2])+" "+str(row[3]))
+            print('REGISTRO RECUSADO')
+            print('FUNCIONARIO NAO ATIVO')
+            port.write(3)
     
