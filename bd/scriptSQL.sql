@@ -1,7 +1,23 @@
+<<<<<<< HEAD
 Create Schema proj;
 
 CREATE TABLE proj.tb_funcionario(
   userID		    	Serial,
+=======
+DROP SCHEMA proj;
+CREATE SCHEMA proj;
+
+CREATE TABLE proj.tb_funcionario(
+  userID		    	INTEGER,
+	codCargo		    INTEGER NOT NULL,
+	estadoCivil		  INTEGER NOT NULL,              
+	cargaHoraria	  NUMERIC NOT NULL,
+	salario			    NUMERIC(7,2) NOT NULL,
+	ativo			      BOOLEAN NOT NULL,
+	idTag			      INTEGER NOT NULL UNIQUE,
+  admissao        DATE NOT NULL,
+  demissao        DATE,
+>>>>>>> 97020567d158dcdc19b9251bd851cec1ae1cd5c2
 	nome			      VARCHAR(20) NOT NULL,
 	sobreNome		    VARCHAR(35) NOT NULL,
 	cpf				      VARCHAR(13) NOT NULL UNIQUE,
@@ -50,7 +66,11 @@ CREATE TABLE proj.tb_cargos(
 	codDep          INTEGER,
 	codCargo        INTEGER,
   cargo           VARCHAR(10),
+<<<<<<< HEAD
 	CONSTRAINT fk_carg_codDep FOREIGN KEY (codDep) REFERENCES proj.tb_departamentos(codDep)
+=======
+	ONSTRAINT fk_carg_codDep FOREIGN KEY (codDep) REFERENCES proj.tb_departamentos(codDep)
+>>>>>>> 97020567d158dcdc19b9251bd851cec1ae1cd5c2
 );
 
 CREATE TABLE proj.tb_pontos(
