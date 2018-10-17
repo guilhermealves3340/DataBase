@@ -2,13 +2,13 @@ DROP SCHEMA proj;
 CREATE SCHEMA proj;
 
 CREATE TABLE proj.tb_funcionario(
-  	userID		    	INTEGER,
-	nome			      VARCHAR(20) NOT NULL,
-	sobreNome		    VARCHAR(35) NOT NULL,
-	cpf				      VARCHAR(13) NOT NULL UNIQUE,
-	rg			  VARCHAR(10) NOT NULL UNIQUE,
-	dataNascimento  	  DATE,
-	estadoCivil		  INTEGER NOT NULL,              
+  	userID		    	Serial,
+	nome			VARCHAR(20) NOT NULL,
+	sobreNome		VARCHAR(35) NOT NULL,
+	cpf			VARCHAR(13) NOT NULL UNIQUE,
+	rg			VARCHAR(10) NOT NULL UNIQUE,
+	dataNascimento  	DATE,
+	estadoCivil	VARCHAR(15) NOT NULL,              
   	logradouro      VARCHAR(40) NOT NULL,
   	numResidencia   INTEGER NOT NULL,
  	complemento     VARCHAR(15),
