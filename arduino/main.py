@@ -39,7 +39,7 @@ def query(sql, rows):
         cur.close()
 
     except:
-        pass
+        pass            # Tratar erro
 
 while True:
 
@@ -66,31 +66,26 @@ while True:
         else:
                 
             if rows[3]:
-                port.write('Volte amanhã')
+                port.write(1)      # Enviando para o lcd (1): 'Volte amanha'
                 sql = ''
                 
             else:
 
                 sql = "UPDATE proj.tb_pontos SET {} = {} WHERE userID = {} AND dia = {}".format(ponto(rows),hr,id,day)
 
-                port.write(str(row[2])+" "+str(row[3]))
-                time.sleep(0.2)
-                port.write(str(hr))
-                time.sleep(0.2)
+                port.write(2)   # Enviando sinal para acesso liberado
+                print('PONTO REGISTRADO')
+                print(str(row[2])+" "+str(row[3]))
+                print(str(hr))
 
         rows = None
         if sql:
             query(sql,rows)
 
-        # Aguardando 3s
-        time.sleep(3)
-
     else:
    
-        port.write(str(row[2])+" "+str(row[3]))
-        time.sleep(0.2)
-        port.write('ENTRADA RECUSADA')
-
-        # Aguardando 3s
-        time.sleep(3)
+        print(str(row[2])+" "+str(row[3]))
+        print('REGISTRO RECUSADO')
+        print('FUNCIONARIO NAO ATIVO')
+        port.write(3)
     
