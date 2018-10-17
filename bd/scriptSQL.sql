@@ -11,7 +11,6 @@ CREATE TABLE proj.tb_funcionario(
 	idTag			      INTEGER NOT NULL UNIQUE,
   admissao        DATE NOT NULL,
   demissao        DATE,
->>>>>>> 97020567d158dcdc19b9251bd851cec1ae1cd5c2
 	nome			      VARCHAR(20) NOT NULL,
 	sobreNome		    VARCHAR(35) NOT NULL,
 	cpf				      VARCHAR(13) NOT NULL UNIQUE,
