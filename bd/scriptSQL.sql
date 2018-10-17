@@ -58,12 +58,9 @@ CREATE TABLE proj.tb_departamentos(
 CREATE TABLE proj.tb_cargos(
 	codDep          INTEGER,
 	codCargo        INTEGER,
-  cargo           VARCHAR(10),
-<<<<<<< HEAD
+  	cargo           VARCHAR(10),
 	CONSTRAINT fk_carg_codDep FOREIGN KEY (codDep) REFERENCES proj.tb_departamentos(codDep)
-=======
-	ONSTRAINT fk_carg_codDep FOREIGN KEY (codDep) REFERENCES proj.tb_departamentos(codDep)
->>>>>>> 97020567d158dcdc19b9251bd851cec1ae1cd5c2
+
 );
 
 CREATE TABLE proj.tb_pontos(
