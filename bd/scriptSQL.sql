@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-Create Schema proj;
-
-CREATE TABLE proj.tb_funcionario(
-  userID		    	Serial,
-=======
 DROP SCHEMA proj;
 CREATE SCHEMA proj;
 
