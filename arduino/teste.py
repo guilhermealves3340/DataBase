@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 
 import psycopg2 as pg
 import serial
@@ -8,6 +9,7 @@ now = None
 
 porta = str(input("[ACM... : ]"))
 device = '/dev/ttyACM'+porta
+
 port = serial.Serial(device, 9600)
 
 
@@ -36,28 +38,73 @@ def query(sql, rows):
 
         # Executando a query passada
         cur.execute(sql)
-        if rows != None:
+        if rows[0] != None:
             rows = cur.fetchall()
         conn.commit()
         cur.close()
+        print "[INFO]: CONEXÃO POSTGRES OK"
 
     except:
-        pass            # Tratar erro
+        print("[INFO]: FALHA CONEXÃO COM POSTGRES")            # Tratar erro
 
 while True:
 
+    print('teste')
+
     port.write('1')
-    cardID = str(port.readline())
-    print '[',cardID,']'
+    tag = str(port.readline())
+    cardID = ''
+    for i in range(11):
+        cardID = cardID + tag[i]
+    print cardID
 
-    sql = "SELECT userID, ativo, nome, sobreNome FROM proj.tb_funcionario WHERE idTag = "+cardID
-    row = [True]
-    query(sql,row)
-    id = str(row[0])
-    print row[2]
-    print id
+    if cardID:
 
-    
+        sql = "SELECT userID, nome, sobreNome FROM proj.tb_funcionario WHERE idTag = '"+cardID+"';"
+        row = [2]
+        query(sql,row)
+        id = row[0][0]
 
-    time.sleep(5)
+
+
+        """if row[0][0]:
+
+            now = datetime.now()
+            hr = str(now.hour)+":"+str(now.minute)+":"+str(now.second)
+            day = str(now.date())       # AAAA-MM-DD
+
+            # Query de busca 
+            sql = "SELECT entrada, almoco, retorno, saida FROM proj.tb_pontos WHERE userID = {} AND dia = '{}';".format(id,day)
+            rows = ['txt']
+            query(sql,rows)
+
+            if not rows[0]:
+                sql = "INSERT INTO proj.tb_pontos(userID,dia,entrada) VALUES({},'{}','{}');".format(id,day,hr)
+            else:
+                
+                if rows[3]:
+                    port.write('2')      # Enviando para o lcd (1): 'Volte amanha'
+                    sql = ''
+                
+                else:
+
+                    sql = "UPDATE proj.tb_pontos SET {} = '{}' WHERE userID = {} AND dia = '{}'".format(ponto(rows),hr,id,day)
+
+                    port.write('3')   # Enviando sinal para acesso liberado
+                    print('PONTO REGISTRADO')
+                    print(str(row[1])+" "+str(row[2]))
+                    print(str(hr))
+
+            rows = None
+            if sql:
+                query(sql,rows)
+
+        else:
+   
+            print(str(row[1])+" "+str(row[2]))
+            print('REGISTRO RECUSADO')
+            print('FUNCIONARIO NAO ATIVO')
+            port.write('2')"""
+
+    time.sleep(1.8)
     
