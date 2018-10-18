@@ -43,7 +43,7 @@ def query(sql, rows):
             rows = cur.fetchall()
         conn.commit()
         cur.close()
-        print "[INFO]: CONEXÃO POSTGRES OK")
+        print("[INFO]: CONEXÃO POSTGRES OK")
 
     except:
         print("[INFO]: FALHA CONEXÃO COM POSTGRES")            # Tratar erro
