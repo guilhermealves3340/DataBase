@@ -12,7 +12,7 @@ device = '/dev/ttyACM'+porta
 try:
     port = serial.Serial(device, 9600)
 except: 
-    print "[INFO]: FALHA CONEXÃO USB"
+    print("[INFO]: FALHA CONEXÃO USB")
 
 def ponto(row):
     x = 0
@@ -43,18 +43,18 @@ def query(sql, rows):
             rows = cur.fetchall()
         conn.commit()
         cur.close()
-        print "[INFO]: CONEXÃO POSTGRES OK"
+        print "[INFO]: CONEXÃO POSTGRES OK")
 
     except:
-        print "[INFO]: FALHA CONEXÃO COM POSTGRES"            # Tratar erro
+        print("[INFO]: FALHA CONEXÃO COM POSTGRES")            # Tratar erro
 
 while True:
 
-    print 'teste'
+    print('teste')
 
     port.write('1')
     cardID = str(port.readline())
-    print '[',cardID,']'
+    print('[',cardID,']')
 
     if cardID:
 
@@ -87,9 +87,9 @@ while True:
                     sql = "UPDATE proj.tb_pontos SET {} = '{}' WHERE userID = {} AND dia = '{}'".format(ponto(rows),hr,id,day)
 
                     port.write('3')   # Enviando sinal para acesso liberado
-                    print 'PONTO REGISTRADO'
-                    print str(row[1])+" "+str(row[2])
-                    print str(hr)
+                    print('PONTO REGISTRADO')
+                    print(str(row[1])+" "+str(row[2]))
+                    print(str(hr))
 
             rows = None
             if sql:
@@ -97,9 +97,9 @@ while True:
 
         else:
    
-            print str(row[1])+" "+str(row[2])
-            print 'REGISTRO RECUSADO'
-            print 'FUNCIONARIO NAO ATIVO'
+            print(str(row[1])+" "+str(row[2]))
+            print('REGISTRO RECUSADO')
+            print('FUNCIONARIO NAO ATIVO')
             port.write('2')
 
     time.sleep(1.8)
