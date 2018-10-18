@@ -62,5 +62,4 @@ class Connection {
     private function __wakeup() {
 
     }
-
 }
