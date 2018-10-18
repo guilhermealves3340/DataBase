@@ -8,8 +8,11 @@ now = None
 
 porta = str(input("[ACM... : ]"))
 device = '/dev/ttyACM'+porta
-port = serial.Serial(device, 9600)
 
+try:
+    port = serial.Serial(device, 9600)
+except: 
+    print "[INFO]: FALHA CONEXÃO USB"
 
 def ponto(row):
     x = 0
@@ -40,9 +43,10 @@ def query(sql, rows):
             rows = cur.fetchall()
         conn.commit()
         cur.close()
+        print "[INFO]: CONEXÃO POSTGRES OK"
 
     except:
-        pass            # Tratar erro
+        print "[INFO]: FALHA CONEXÃO COM POSTGRES"            # Tratar erro
 
 while True:
 
@@ -57,21 +61,21 @@ while True:
         sql = "SELECT userID, nome, sobreNome FROM proj.tb_funcionario WHERE idTag = '"+cardID+"';"
         row = [True]
         query(sql,row)
-        id = str(row[0])
+        id = str(row[0][0])
 
-        if row[0][1] == 1:
+        if row[0][0]:
 
             now = datetime.now()
             hr = str(now.hour)+":"+str(now.minute)+":"+str(now.second)
             day = str(now.date())       # AAAA-MM-DD
 
             # Query de busca 
-            sql = "SELECT entrada, almoco, retorno, saida FROM proj.tb_pontos WHERE userID = {} AND dia = {}".format(id,day)
+            sql = "SELECT entrada, almoco, retorno, saida FROM proj.tb_pontos WHERE userID = {} AND dia = '{}';".format(id,day)
             rows = [True]
             query(sql,rows)
 
-            if not rows:
-                sql = "INSERT INTO proj.tb_pontos(userID,dia,entrada) VALUES({},{},{});".format(id,day,hr)
+            if not rows[0]:
+                sql = "INSERT INTO proj.tb_pontos(userID,dia,entrada) VALUES({},'{}','{}');".format(id,day,hr)
             else:
                 
                 if rows[3]:
@@ -80,11 +84,11 @@ while True:
                 
                 else:
 
-                    sql = "UPDATE proj.tb_pontos SET {} = {} WHERE userID = {} AND dia = {}".format(ponto(rows),hr,id,day)
+                    sql = "UPDATE proj.tb_pontos SET {} = '{}' WHERE userID = {} AND dia = '{}'".format(ponto(rows),hr,id,day)
 
                     port.write('3')   # Enviando sinal para acesso liberado
                     print 'PONTO REGISTRADO'
-                    print str(row[2])+" "+str(row[3])
+                    print str(row[1])+" "+str(row[2])
                     print str(hr)
 
             rows = None
@@ -93,7 +97,7 @@ while True:
 
         else:
    
-            print str(row[2])+" "+str(row[3])
+            print str(row[1])+" "+str(row[2])
             print 'REGISTRO RECUSADO'
             print 'FUNCIONARIO NAO ATIVO'
             port.write('2')
