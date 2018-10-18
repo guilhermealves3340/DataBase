@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 
 import psycopg2 as pg
 import serial
@@ -9,10 +10,8 @@ now = None
 porta = str(input("[ACM... : ]"))
 device = '/dev/ttyACM'+porta
 
-try:
-    port = serial.Serial(device, 9600)
-except: 
-    print("[INFO]: FALHA CONEXÃO USB")
+port = serial.Serial(device, 9600)
+
 
 def ponto(row):
     x = 0
@@ -39,11 +38,15 @@ def query(sql, rows):
 
         # Executando a query passada
         cur.execute(sql)
-        if rows != None:
+        if rows[0] != None:
             rows = cur.fetchall()
         conn.commit()
         cur.close()
+<<<<<<< HEAD
         print("[INFO]: CONEXÃO POSTGRES OK")
+=======
+        print "[INFO]: CONEXÃO POSTGRES OK"
+>>>>>>> 3f0ac27198303e3c881339b562ef3db5f3e7c8e1
 
     except:
         print("[INFO]: FALHA CONEXÃO COM POSTGRES")            # Tratar erro
@@ -53,13 +56,16 @@ while True:
     print('teste')
 
     port.write('1')
-    cardID = str(port.readline())
-    print('[',cardID,']')
+    tag = str(port.readline())
+    cardID = ''
+    for i in range(11):
+        cardID = cardID + tag[i]
+    print cardID
 
     if cardID:
 
         sql = "SELECT userID, nome, sobreNome FROM proj.tb_funcionario WHERE idTag = '"+cardID+"';"
-        row = [True]
+        row = [2]
         query(sql,row)
         id = str(row[0][0])
 
@@ -71,7 +77,7 @@ while True:
 
             # Query de busca 
             sql = "SELECT entrada, almoco, retorno, saida FROM proj.tb_pontos WHERE userID = {} AND dia = '{}';".format(id,day)
-            rows = [True]
+            rows = ['txt']
             query(sql,rows)
 
             if not rows[0]:
