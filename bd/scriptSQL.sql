@@ -19,7 +19,7 @@ CREATE TABLE proj.tb_funcionario(
 	codCargo	INTEGER,
 	cargaHoraria	NUMERIC,
 	salario		NUMERIC(7,2),
-	idTag		INTEGER UNIQUE,
+	idTag		VARCHAR(20) UNIQUE,
   	admissao        DATE NOT NULL,
   	demissao        DATE,
   	CONSTRAINT pk_func_userID PRIMARY KEY(userID)
@@ -62,3 +62,19 @@ CREATE TABLE proj.tb_pontos(
 	retorno		TIME,
 	saida		  TIME
 );
+
+INSERT INTO proj.tb_departamentos(codDep,departamento) VALUES (10,'engenheiro');
+
+INSERT INTO proj.tb_cargos(codDep,codCargo, cargo) VALUES (10,2,'engenheiro');
+
+INSERT INTO proj.tb_funcionario(nome,sobreNome,cpf,rg,dataNascimento,estadoCivil,logradouro,numResidencia,cidade,cep,estado,codCargo,cargaHoraria,salario,idTag,admissao)
+VALUES ('Guilherme','Alves','018581296-13','19370641','1997-01-27','solteiro','av jorge isaac',1478,'Uberlandia','38412-472','MG',10,8,7000.00,'20 09 9E A5','2018-01-01');
+
+INSERT INTO proj.tb_funcionario(nome,sobreNome,cpf,rg,dataNascimento,estadoCivil,logradouro,numResidencia,cidade,cep,estado,codCargo,cargaHoraria,salario,idTag,admissao)
+VALUES ('Lucas','Alves','018581296-07','19370646','1997-01-27','solteiro','av jorge isaac',1478,'Uberlandia','38412-472','MG',10,8,7000.00,'D0 61 B0 79','2018-01-01');
+
+SELECT * FROM proj.tb_pontos;
+
+SELECT * FROM proj.tb_funcionario;
+
+SELECT userID, nome, sobreNome FROM proj.tb_funcionario WHERE idTag = '20 09 9E A5';

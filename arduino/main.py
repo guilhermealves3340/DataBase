@@ -5,7 +5,10 @@ import time
 from datetime import datetime
 
 now = None
-port = serial.Serial('/dev/ttyACM0', 9600)
+
+porta = str(input("[ACM... : ]"))
+device = '/dev/ttyACM'+porta
+port = serial.Serial(device, 9600)
 
 
 def ponto(row):
@@ -43,17 +46,20 @@ def query(sql, rows):
 
 while True:
 
+    print 'teste'
+
+    port.write('1')
     cardID = str(port.readline())
+    print '[',cardID,']'
 
     if cardID:
 
-
-        sql = "SELECT userID, ativo, nome, sobreNome FROM proj.tb_funcionario WHERE idTag = "+cardID
+        sql = "SELECT userID, nome, sobreNome FROM proj.tb_funcionario WHERE idTag = '"+cardID+"';"
         row = [True]
         query(sql,row)
         id = str(row[0])
 
-        if row[1] == 1:
+        if row[0][1] == 1:
 
             now = datetime.now()
             hr = str(now.hour)+":"+str(now.minute)+":"+str(now.second)
@@ -69,17 +75,17 @@ while True:
             else:
                 
                 if rows[3]:
-                    port.write(1)      # Enviando para o lcd (1): 'Volte amanha'
+                    port.write('2')      # Enviando para o lcd (1): 'Volte amanha'
                     sql = ''
                 
                 else:
 
                     sql = "UPDATE proj.tb_pontos SET {} = {} WHERE userID = {} AND dia = {}".format(ponto(rows),hr,id,day)
 
-                    port.write(2)   # Enviando sinal para acesso liberado
-                    print('PONTO REGISTRADO')
-                    print(str(row[2])+" "+str(row[3]))
-                    print(str(hr))
+                    port.write('3')   # Enviando sinal para acesso liberado
+                    print 'PONTO REGISTRADO'
+                    print str(row[2])+" "+str(row[3])
+                    print str(hr)
 
             rows = None
             if sql:
@@ -87,8 +93,10 @@ while True:
 
         else:
    
-            print(str(row[2])+" "+str(row[3]))
-            print('REGISTRO RECUSADO')
-            print('FUNCIONARIO NAO ATIVO')
-            port.write(3)
+            print str(row[2])+" "+str(row[3])
+            print 'REGISTRO RECUSADO'
+            print 'FUNCIONARIO NAO ATIVO'
+            port.write('2')
+
+    time.sleep(1.8)
     
