@@ -71,11 +71,7 @@ while True:
         cur.close()
         id = row[0][0]
 
-        print id
-
-
-
-        """if row[0][0]:
+        if id:
 
             now = datetime.now()
             hr = str(now.hour)+":"+str(now.minute)+":"+str(now.second)
@@ -83,8 +79,14 @@ while True:
 
             # Query de busca 
             sql = "SELECT entrada, almoco, retorno, saida FROM proj.tb_pontos WHERE userID = {} AND dia = '{}';".format(id,day)
-            rows = ['txt']
-            query(sql,rows)
+            conn = pg.connect("dbname=Engenharia user=postgres password=1997")
+            cur = conn.cursor()
+            cur.execute(sql)
+            rows = cur.fetchall()
+            conn.commit()
+            cur.close()
+
+            sql = ''
 
             if not rows[0]:
                 sql = "INSERT INTO proj.tb_pontos(userID,dia,entrada) VALUES({},'{}','{}');".format(id,day,hr)
@@ -103,9 +105,13 @@ while True:
                     print(str(row[1])+" "+str(row[2]))
                     print(str(hr))
 
-            rows = None
+            
             if sql:
-                query(sql,rows)
+                conn = pg.connect("dbname=Engenharia user=postgres password=1997")
+                cur = conn.cursor()
+                cur.execute(sql)
+                conn.commit()
+                cur.close()
 
         else:
    
