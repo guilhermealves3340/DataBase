@@ -47,56 +47,42 @@
 					<!-- Nome-->
 					<div class="wrap-input100 validate-input" data-validate="Nome é obrigatório">
 						<span class="label-input100">Nome</span>
-						<input class="input100" type="text" name="name" placeholder="Nome...">
+						<input class="input100" type="text" id = "nome" placeholder="Nome...">
 						<span class="focus-input100"></span>
 					</div>
 
 					<!-- Sobrenome-->
 					<div class="wrap-input100 validate-input" data-validate="Sobrenome é obrigatório">
 						<span class="label-input100">Sobrenome</span>
-						<input class="input100" type="text" name="name" placeholder="Sobrenome...">
-						<span class="focus-input100"></span>
-					</div>
-
-					<!-- Email -->
-					<div class="wrap-input100 validate-input" data-validate="Email tem que ser válido: ex@abc.xyz">
-						<span class="label-input100">Email</span>
-						<input class="input100" type="text" name="email" placeholder="Email...">
-						<span class="focus-input100"></span>
-					</div>
-
-					<!-- RG -->
-					<div class="wrap-input100 validate-input" data-validate="RG é obrigatório">
-						<span class="label-input100">RG</span>
-						<input class="input100" type="text" name="rg" placeholder="RG...">
+						<input class="input100" type="text" id= "sobreNome" placeholder="Sobrenome...">
 						<span class="focus-input100"></span>
 					</div>
 
 					<!-- CPF -->
 					<div class="wrap-input100 validate-input" data-validate="CPF é obrigatório">
 						<span class="label-input100">CPF</span>
-						<input class="input100" type="text" name="cpf" placeholder="CPF...">
+						<input class="input100" type="text" id="cpf" placeholder="CPF...">
+						<span class="focus-input100"></span>
+					</div>
+
+					<!-- RG -->
+					<div class="wrap-input100 validate-input" data-validate="RG é obrigatório">
+						<span class="label-input100">RG</span>
+						<input class="input100" type="text" id="rg" placeholder="RG...">
 						<span class="focus-input100"></span>
 					</div>
 
 					<!-- Data Nascimento -->
 					<div class="wrap-input100 validate-input" data-validate="Data de Nascimento é obrigatório">
 						<span class="label-input100">Data de Nascimento</span>
-						<input class="input100" type="text" name="nasc" placeholder="dd/mm/yyyy">
+						<input class="input100" type="text" id="nasc" placeholder="dd/mm/yyyy">
 						<span class="focus-input100"></span>
 					</div>
 
-					<!-- Telefone -->
-					<div class="wrap-input100 validate-input" data-validate="Telefone é obrigatório">
-						<span class="label-input100">Tel</span>
-						<input class="input100" type="text" name="tel" placeholder="(xx)XXXX-XXXX">
-						<span class="focus-input100"></span>
-					</div>
-
-					<!-- Celular -->
-					<div class="wrap-input100 validate-input" data-validate="Cel é obrigatório">
-						<span class="label-input100">Cel</span>
-						<input class="input100" type="text" name="cel" placeholder="(xx)XXXXX-XXXX">
+					<!-- Estado Civil -->
+					<div class="wrap-input100 validate-input" data-validate="Estado Civil é obrigatório">
+						<span class="label-input100">Estado Civil</span>
+						<input class="input100" type="text" id="estciv" placeholder="Estado Civil...">
 						<span class="focus-input100"></span>
 					</div>
 
@@ -106,68 +92,95 @@
 						<!-- Cep -->
 						<div class="wrap-input100 validate-input" data-validate="CEP é obrigatório">
 							<span class="label-input100">CEP</span>
-							<input class="input100" type="text" id="cep" name="cep" placeholder="CEP..." size="10" maxlength="9">
+							<input class="input100" type="text" id="cep" placeholder="CEP..." size="10" maxlength="9">
 							<span class="focus-input100"></span>
 						</div>
 
 						<!-- Rua -->
 						<div class="wrap-input100 validate-input" data-validate="Rua é obrigatório">
 							<span class="label-input100">Rua</span>
-							<input class="input100" type="text" id="rua" name="rua" placeholder="Rua..." size="60">
+							<input class="input100" type="text" id="rua" placeholder="Rua..." size="60">
 							<span class="focus-input100"></span>
 						</div>
 
 						<!-- Número -->
 						<div class="wrap-input100 validate-input" data-validate="Número é obrigatório">
 							<span class="label-input100">Número</span>
-							<input class="input100" type="text" name="numero" placeholder="Numero..." size="6" maxlength="4">
+							<input class="input100" type="text" id="num" placeholder="Numero..." size="6" maxlength="4">
 							<span class="focus-input100"></span>
 						</div>
 
 						<!-- Complemento -->
 						<div class="wrap-input100 validate-input">
 							<span class="label-input100">Complemento</span>
-							<input class="input100" type="text" name="complemento" placeholder="Complemento..." size="20">
+							<input class="input100" type="text" id="Complemento" placeholder="Complemento..." size="20">
 							<span class="focus-input100"></span>
 						</div>
 
 						<!-- Bairro -->
 						<div class="wrap-input100 validate-input" data-validate="Bairro é obrigatório">
 							<span class="label-input100">Bairro</span>
-							<input class="input100" type="text" id="bairro" name="bairro" placeholder="Bairro..." size="40">
+							<input class="input100" type="text" id="bairro" placeholder="Bairro..." size="40">
 							<span class="focus-input100"></span>
 						</div>
 
 						<!-- Cidade -->
 						<div class="wrap-input100 validate-input" data-validate="Cidade é obrigatório">
 							<span class="label-input100">Cidade</span>
-							<input class="input100" type="text" id="cidade" name="cidade" placeholder="Cidade..." size="40">
+							<input class="input100" type="text" id="cidade" placeholder="Cidade..." size="40">
 							<span class="focus-input100"></span>
 						</div>
 
 						<!-- Estado -->
 						<div class="wrap-input100 validate-input" data-validate="Estado é obrigatório">
 							<span class="label-input100">Estado</span>
-							<input class="input100" type="text" id="uf" name="uf" placeholder="Estado..." size="2">
+							<input class="input100" type="text" id="uf"  placeholder="Estado..." size="2">
 							<span class="focus-input100"></span>
 						</div>
 					</form>
-
-
-					<div class="container-login100-form-btn">
-						<div class="wrap-login100-form-btn">
-							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">
-								Cadastrar
-							</button>
-						</div> #################################
+					<!-- ====================== Detalhes do Emprego =================== -->
+					<!-- Sobrenome-->
+					<div class="wrap-input100 validate-input" >
+						<span class="label-input100">Codigo do Cargo</span>
+						<input class="input100" type="text" id= "codCargo" placeholder="Codigo do Cargo...">
+						<span class="focus-input100"></span>
 					</div>
-					<input type="submit" class="button" name="connect" value="connect" />
+
+					<!-- CPF -->
+					<div class="wrap-input100 validate-input">
+						<span class="label-input100">Carga Horaria</span>
+						<input class="input100" type="text" id="cargaHoraria" placeholder="Carga Horária...">
+						<span class="focus-input100"></span>
 					</div>
+
+					<!-- RG -->
+					<div class="wrap-input100 validate-input" >
+						<span class="label-input100">Salario</span>
+						<input class="input100" type="text" id="salario"placeholder="Salário ...">
+						<span class="focus-input100"></span>
+					</div>
+
+					<!-- Data Nascimento -->
+					<div class="wrap-input100 validate-input">
+						<span class="label-input100">ID Tag</span>
+						<input class="input100" type="text" id="idTag" placeholder="ID Tag...">
+						<span class="focus-input100"></span>
+					</div>
+
+										<div class="container-login100-form-btn">
+											<div class="wrap-login100-form-btn">
+												<div class="login100-form-bgbtn"></div>
+												<button id="Cadastrar" class="login100-form-btn" >
+													Cadastrar
+												</button>
+											</div>
+										</div>
+
 				</form>
 			</div>
 		</div>
 	</div>
+
 
 	<!-- Bootstrap JS -->
 	<!--===============================================================================================-->
@@ -251,20 +264,46 @@
 					limpa_formulário_cep();
 				}
 			});
-###############################
-			$('.button').click(function(){
-					var clickBtnValue = $(this).val();
-					var ajaxurl = 'connect.php',
-					data =  {'action': clickBtnValue};
-					$.post(ajaxurl, data, function (response) {
-							// Response div goes here.
-							alert("action performed successfully");
-					});
-		});
-
+	});
 	</script>
+	<script>
 
-
+	$("#Cadastrar").on('click',function (e){
+		 e.preventDefault();
+		var nome = document.getElementById('nome').value;
+		var sobreNome = document.getElementById('sobreNome').value;
+		var cpf = document.getElementById('cpf').value;
+		var rg = document.getElementById('rg').value;
+		var dataNascimento = document.getElementById('nasc').value;
+		var estadoCivil = document.getElementById('estciv').value;
+		var logradouro = document.getElementById('rua').value;
+		var numResidencia = document.getElementById('num').value;
+		var complemento = document.getElementById('Complemento').value;
+		var bairro = document.getElementById('bairro').value;
+		var cidade = document.getElementById('cidade').value;
+		var estado = document.getElementById('uf').value;
+		var cep = document.getElementById('cep').value;
+		var admissao = new Date();
+		var dd = admissao.getDate();
+		var mm = admissao.getMonth()+1; //January is 0!
+		var yyyy = admissao.getFullYear();
+		if(dd<10){
+    dd='0'+dd;
+		}
+		if(mm<10){
+    mm='0'+mm;
+		}
+		var admissao = dd+'/'+mm+'/'+yyyy;
+		$.ajax({
+				 type: "POST",
+				 url: 'connect.php',
+				 data:{action:'connect', nome: nome, sobreNome: sobreNome, cpf: cpf, rg: rg, estadoCivil: estadoCivil, dataNascimento: dataNascimento, logradouro: logradouro, numResidencia: numResidencia, complemento: complemento, bairro: bairro, cidade: cidade, cep: cep, estado: estado, admissao: admissao,},
+				 success:function(html) {
+					 alert(html)
+				 }
+		});
+});
+	</script>
 </body>
 
 </html>
