@@ -17,6 +17,10 @@ void setup()
   SPI.begin();      // Inicia  SPI bus
   mfrc522.PCD_Init();   // Inicia MFRC522 
   lcd.begin(16, 2);
+
+  pinMode(2,OUTPUT);
+  pinMode(4,OUTPUT);
+  pinMode(3,OUTPUT);
 }
 
 char opc;

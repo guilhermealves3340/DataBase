@@ -13,12 +13,14 @@ device = '/dev/ttyACM'+porta
 port = serial.Serial(device, 9600)
 
 
+
 def ponto(row):
     x = 0
     for i in row:
         if i:
             x = x +1
 
+    
     if x == 0:
         return 'entrada'
     if x == 1:
@@ -42,19 +44,14 @@ def query(sql, rows):
             rows = cur.fetchall()
         conn.commit()
         cur.close()
-<<<<<<< HEAD
-        print("[INFO]: CONEXÃO POSTGRES OK")
-=======
         print "[INFO]: CONEXÃO POSTGRES OK"
->>>>>>> 3f0ac27198303e3c881339b562ef3db5f3e7c8e1
 
     except:
         print("[INFO]: FALHA CONEXÃO COM POSTGRES")            # Tratar erro
 
 while True:
 
-    print('teste')
-
+    print('TESLA')
     port.write('1')
     tag = str(port.readline())
     cardID = ''
@@ -65,11 +62,16 @@ while True:
     if cardID:
 
         sql = "SELECT userID, nome, sobreNome FROM proj.tb_funcionario WHERE idTag = '"+cardID+"';"
-        row = [2]
-        query(sql,row)
-        id = str(row[0][0])
+        
+        conn = pg.connect("dbname=Engenharia user=postgres password=1997")
+        cur = conn.cursor()
+        cur.execute(sql)
+        row = cur.fetchall()
+        conn.commit()
+        cur.close()
+        id = row[0][0]
 
-        if row[0][0]:
+        if id:
 
             now = datetime.now()
             hr = str(now.hour)+":"+str(now.minute)+":"+str(now.second)
@@ -77,36 +79,49 @@ while True:
 
             # Query de busca 
             sql = "SELECT entrada, almoco, retorno, saida FROM proj.tb_pontos WHERE userID = {} AND dia = '{}';".format(id,day)
-            rows = ['txt']
-            query(sql,rows)
+            conn = pg.connect("dbname=Engenharia user=postgres password=1997")
+            cur = conn.cursor()
+            cur.execute(sql)
+            rows = cur.fetchall()
+            conn.commit()
+            cur.close()
 
-            if not rows[0]:
+            sql = ''
+
+            
+
+            if not rows:
                 sql = "INSERT INTO proj.tb_pontos(userID,dia,entrada) VALUES({},'{}','{}');".format(id,day,hr)
             else:
                 
-                if rows[3]:
+                if rows[0][3]:
                     port.write('2')      # Enviando para o lcd (1): 'Volte amanha'
+                    print "Dia de trabalho cumprido! Até amanha"
                     sql = ''
                 
                 else:
 
-                    sql = "UPDATE proj.tb_pontos SET {} = '{}' WHERE userID = {} AND dia = '{}'".format(ponto(rows),hr,id,day)
+                    sql = "UPDATE proj.tb_pontos SET {} = '{}' WHERE userID = {} AND dia = '{}'".format(ponto(rows[0]),hr,id,day)
 
                     port.write('3')   # Enviando sinal para acesso liberado
                     print('PONTO REGISTRADO')
-                    print(str(row[1])+" "+str(row[2]))
+                    print(str(row[0][1])+" "+str(row[0][2]))
                     print(str(hr))
 
-            rows = None
+            
             if sql:
-                query(sql,rows)
+                conn = pg.connect("dbname=Engenharia user=postgres password=1997")
+                cur = conn.cursor()
+                cur.execute(sql)
+                conn.commit()
+                cur.close()
 
         else:
    
-            print(str(row[1])+" "+str(row[2]))
+            print(str(row[0][1])+" "+str(row[0][2]))
             print('REGISTRO RECUSADO')
             print('FUNCIONARIO NAO ATIVO')
             port.write('2')
 
-    time.sleep(1.8)
+    time.sleep(2)
     
