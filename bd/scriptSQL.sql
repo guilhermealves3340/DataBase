@@ -78,3 +78,9 @@ SELECT * FROM proj.tb_pontos;
 SELECT * FROM proj.tb_funcionario;
 
 SELECT userID, nome, sobreNome FROM proj.tb_funcionario WHERE idTag = '20 09 9E A5';
+
+select * from proj.tb_pontos;
+
+select * from proj.tb_funcionario;
+
+SELECT userID, nome, sobreNome FROM proj.tb_funcionario WHERE idTag = 'D0 61 B0 79';
