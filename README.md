@@ -41,3 +41,8 @@ O leitor RFID tem 8 pinos que seguem a seguinte sequência de ligação. À tens
 <p align="center">
   <img src="./bd/diagrama.png" title="hover text">
 </p>
+
+## Dependeências:
+
+* Psycopg2
+* PySerial
