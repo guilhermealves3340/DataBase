@@ -1,6 +1,12 @@
 Banco de horas com RC522_RFID, arduino e website
 ==============
 
+A ideia deste projeto é fazer um controle de banco de horas como o de uma empresa.
+
+1a Realizamos um cadastro de um funcionário via website que por sua vez se conecta no banco de dados Postegres e grava as informações.
+Apos cadastro realizado o funcionário pode registrar seus pontos pelo sensor RFID que controlado por um arduino nano envia os dados por um programa Python que por sua vez grava os dados no Postegres.
+
+A página website também fornece uma visualização dos pontos mensais de um determindo funcionário.
 
 ## Pinagem Leitor RFID:
 
