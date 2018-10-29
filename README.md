@@ -36,3 +36,8 @@ O leitor RFID tem 8 pinos que seguem a seguinte sequência de ligação. À tens
   <img src="./arduino/Arduino-and-MFRC522-RFID-Reader-Module-Circuit-Schematic.png" width="636" title="hover text">
 </p>
 
+## Diagrama DER 
+
+<p align="center">
+  <img src="./bd/diagrama.png" title="hover text">
+</p>
