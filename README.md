@@ -8,6 +8,32 @@ Apos cadastro realizado o funcionário pode registrar seus pontos pelo sensor RF
 
 A página website também fornece uma visualização dos pontos mensais de um determindo funcionário.
 
+## Diagrama DER 
+
+<p align="center">
+  <img src="./bd/diagrama.png" title="hover text">
+</p>
+
+
+## Linguagem Utilizadas:
+
+* PHP 7.2
+* JAVASCRIPT
+* HTML 5
+* CSS 3
+* Python 3
+
+## Dependeências:
+
+* Psycopg2
+* PySerial
+
+## Esquemático do Projeto
+
+<p align="center">
+  <img src="./arduino/Arduino-and-MFRC522-RFID-Reader-Module-Circuit-Schematic.png" width="636" title="hover text">
+</p>
+
 ## Pinagem Leitor RFID:
 
 O leitor RFID tem 8 pinos que seguem a seguinte sequência de ligação. À tensão de alimentação, que neste caso é de 3.3 volts
@@ -22,27 +48,3 @@ O leitor RFID tem 8 pinos que seguem a seguinte sequência de ligação. À tens
 * Pino RST ligado na porta 9 do Arduino
 * Pino 3.3 – ligado ao pino 3.3 V do Arduino
 
-## Linguagem Utilizadas:
-
-* PHP 7.2
-* JAVASCRIPT
-* HTML 5
-* CSS 3
-* Python 3
-
-## Esquemático do Projeto
-
-<p align="center">
-  <img src="./arduino/Arduino-and-MFRC522-RFID-Reader-Module-Circuit-Schematic.png" width="636" title="hover text">
-</p>
-
-## Diagrama DER 
-
-<p align="center">
-  <img src="./bd/diagrama.png" title="hover text">
-</p>
-
-## Dependeências:
-
-* Psycopg2
-* PySerial
