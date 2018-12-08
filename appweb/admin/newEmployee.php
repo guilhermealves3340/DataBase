@@ -1,11 +1,3 @@
-<?php
-    require_once('../DataBase.php');
-    $objDb = new DataBase();
-    $link = $objDb->conecta_mysql();
-
-    $sqlArea = "SELECT * FROM tb_area_conhecimento;";
-    $resultSQLArea = mysqli_query($link, $sqlArea);
-?>
 <!DOCTYPE html>
 <html lang="pt_BR">
     <head>
@@ -26,26 +18,21 @@
                         <div class="tile">
                             <div class="row text-center">
                                 <div class="col-md-12 h3">
-                                    Cadastrar Novo Curso
+                                    Cadastrar Novo Funcionário
                                 </div>
                             </div><br>
 
                             <form action="#">
                                 <div class="form-group">
-                                    <label>Nome do Curso:</label>
-                                    <input type="text" class="form-control" name="nomeCurso">
-                                </div>
-
-                                <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label>Carga Horária:</label>
-                                            <input type="text" class="form-control" name="cargaHoraria">
+                                            <label>Nome:</label>
+                                            <input type="text" class="form-control" name="nome">
                                         </div>
 
                                         <div class="col-md-6">
-                                            <label>Valor do Curso:</label>
-                                            <input type="text" class="form-control" name="valor">
+                                            <label>Sobrenome:</label>
+                                            <input type="text" class="form-control" name="sobrenome">
                                         </div>
                                     </div>
                                 </div>
@@ -53,40 +40,86 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label>Vídeo de Apresentação:</label>
-                                            <input type="file" name="videoApresentacao">
+                                            <label>CPF:</label>
+                                            <input type="text" class="form-control" name="cpf">
                                         </div>
+
                                         <div class="col-md-6">
-                                            <label>Àrea do Conhecimento:</label>
-                                            <select class="form-control" id="exampleFormControlSelect1">
-                                                <?php
-                                                    while($rows = mysqli_fetch_assoc($resultSQLArea)){
-                                                ?>
-                                                    <option value="<?php echo $rows['id_area']; ?>"><?php echo $rows['nome']; ?></option>
-                                                <?php
-                                                    }
-                                                ?>
-                                            </select>
+                                            <label>RG:</label>
+                                            <input type="text" class="form-control" name="rg">
                                         </div>
                                     </div>
                                 </div>
-
 
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="container text-center">
-                                			<a class="btn btn-primary" href="javascript:void(0)" id="addInput">
-                                				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                                				<i class="fa fa-plus" aria-hidden="true"></i> Adicionar Aula
-                                			</a>
+                                        <div class="col-md-6">
+                                            <label>Data de Nascimento:</label>
+                                            <input type="text" class="form-control" name="dataNascimento">
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label>Estado Civil:</label>
+                                            <input type="text" class="form-control" name="estadoCivil">
                                         </div>
                                     </div>
                                 </div>
 
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>CEP:</label>
+                                            <input type="text" class="form-control" name="cep">
+                                        </div>
 
-                    			<div id="dynamicDiv">
+                                        <div class="col-md-6">
+                                            <label>Rua:</label>
+                                            <input type="text" class="form-control" name="rua">
+                                        </div>
+                                    </div>
+                                </div>
 
-                    		    </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Número:</label>
+                                            <input type="text" class="form-control" name="numero">
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label>Complemento:</label>
+                                            <input type="text" class="form-control" name="complemento">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Bairro:</label>
+                                            <input type="text" class="form-control" name="bairro">
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label>Cidade:</label>
+                                            <input type="text" class="form-control" name="cidade">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Estado:</label>
+                                            <input type="text" class="form-control" name="estado">
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label>ID Tag:</label>
+                                            <input type="text" class="form-control" name="idTag">
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <span class="row justify-content-center">
                                     <button type="submit" class="btn btn-success">Cadastrar</button>

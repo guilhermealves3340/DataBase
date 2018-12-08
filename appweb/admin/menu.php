@@ -54,7 +54,7 @@
         </li>
 
         <li>
-            <a class="app-menu__item <?php if($aqui == 'pedidos') echo 'active'; ?>" href="relatorio.php">
+            <a class="app-menu__item <?php if($aqui == 'relatorio') echo 'active'; ?>" href="relatorio.php">
                 <i class="app-menu__icon fa fa-file-text"></i>
                 <span class="app-menu__label">Relatórios</span>
             </a>

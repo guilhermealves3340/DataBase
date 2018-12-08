@@ -54,12 +54,6 @@ $(function() {
 
             });
 
-
-
-
-
-
-
         }
         else {
             if(menu != null){
