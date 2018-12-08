@@ -13,13 +13,15 @@
        $cep = $_POST['cep'];
        $estado = $_POST['estado'];
        $admissao = $_POST['admissao'];
+       $rfid = $_POST['rfid'];
+
        require 'postgresqlphpconnect/vendor/autoload.php';
        use PostgreSQL\Connection as Connection;
        use PostgreSQL\Insert as Insertion;
        $pdo =  Connection::get()->connect();
        $insert = New Insertion($pdo);
       try{
-        $id =  $insert-> criaFuncionario($nome, $sobreNome, $cpf, $rg, $dataNascimento, $estadoCivil,$logradouro, $numResidencia, $complemento, $bairro, $cidade, $cep,  $estado, $admissao);
+        $id =  $insert-> criaFuncionario($nome, $sobreNome, $cpf, $rg, $dataNascimento, $estadoCivil,$logradouro, $numResidencia, $complemento, $bairro, $cidade, $cep,  $estado, $admissao,$rfid);
         echo  $id ;
     }
     catch (\PDOException $e) {

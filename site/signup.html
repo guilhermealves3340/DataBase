@@ -140,27 +140,26 @@
 					</form>
 					<!-- ====================== Detalhes do Emprego =================== -->
 					<!-- Sobrenome-->
-					<div class="wrap-input100 validate-input" >
+					<!-- <div class="wrap-input100 validate-input" >
 						<span class="label-input100">Codigo do Cargo</span>
 						<input class="input100" type="text" id= "codCargo" placeholder="Codigo do Cargo...">
 						<span class="focus-input100"></span>
 					</div>
 
-					<!-- CPF -->
+
 					<div class="wrap-input100 validate-input">
 						<span class="label-input100">Carga Horaria</span>
 						<input class="input100" type="text" id="cargaHoraria" placeholder="Carga Horária...">
 						<span class="focus-input100"></span>
 					</div>
 
-					<!-- RG -->
+
 					<div class="wrap-input100 validate-input" >
 						<span class="label-input100">Salario</span>
 						<input class="input100" type="text" id="salario"placeholder="Salário ...">
 						<span class="focus-input100"></span>
 					</div>
-
-					<!-- Data Nascimento -->
+-->
 					<div class="wrap-input100 validate-input">
 						<span class="label-input100">ID Tag</span>
 						<input class="input100" type="text" id="idTag" placeholder="ID Tag...">
@@ -287,6 +286,7 @@
 		var dd = admissao.getDate();
 		var mm = admissao.getMonth()+1; //January is 0!
 		var yyyy = admissao.getFullYear();
+		var rfid = document.getElementById('idTag').value;
 		if(dd<10){
     dd='0'+dd;
 		}
@@ -297,7 +297,7 @@
 		$.ajax({
 				 type: "POST",
 				 url: 'connect.php',
-				 data:{action:'connect', nome: nome, sobreNome: sobreNome, cpf: cpf, rg: rg, estadoCivil: estadoCivil, dataNascimento: dataNascimento, logradouro: logradouro, numResidencia: numResidencia, complemento: complemento, bairro: bairro, cidade: cidade, cep: cep, estado: estado, admissao: admissao},
+				 data:{action:'connect', nome: nome, sobreNome: sobreNome, cpf: cpf, rg: rg, estadoCivil: estadoCivil, dataNascimento: dataNascimento, logradouro: logradouro, numResidencia: numResidencia, complemento: complemento, bairro: bairro, cidade: cidade, cep: cep, estado: estado, admissao: admissao,rfid: rfid},
 				 success:function(html) {
 					 alert(html)
 				 }
