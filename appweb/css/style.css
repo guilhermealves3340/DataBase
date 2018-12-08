@@ -1,0 +1,20 @@
+body {
+    background: #CDC9C9;
+}
+
+.left-inner-addon {
+    position: relative;
+}
+.left-inner-addon i {
+    position: absolute;
+    padding: 10px 12px;
+    pointer-events: none;
+    color: #666;
+}
+.left-inner-addon input.form-control {
+    padding-left: 30px;
+}
+
+.card {
+    margin-top: 10%;
+}
