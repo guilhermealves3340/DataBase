@@ -1,0 +1,8 @@
+-Um script de rotina em python verifica a tabela de pontos no Postgres e soma as horas e guarde no mongo
+
+- Mongo:
+        Database: 'tela'
+        Collection: 'horas'
+        Keys: _id, nome, sobrenome, horas_compridas, salario
+
+- Informações acima útil para a geração do relatório (Pablo)

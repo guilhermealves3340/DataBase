@@ -1,6 +1,5 @@
 from pymongo import MongoClient
 import psycopg2 as pg
-import serial
 from datetime import datetime
 import json
 
@@ -16,7 +15,7 @@ conn = pg.connect("dbname=Engenharia user=postgres password=1997")
 cur = conn.cursor()
 
 # Conect MongoDB
-myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+myclient = MongoClient("mongodb://localhost:27017/")
 
 db = myclient["tesla"]
 
