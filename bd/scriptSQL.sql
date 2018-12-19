@@ -2,13 +2,13 @@ DROP SCHEMA proj;
 CREATE SCHEMA proj;
 
 CREATE TABLE proj.tb_funcionario(
-  	userID		    	Serial,
+  	userID		    INTEGER Serial,
 	nome			VARCHAR(20) NOT NULL,
 	sobreNome		VARCHAR(35) NOT NULL,
-	cpf			VARCHAR(13) NOT NULL UNIQUE,
-	rg			VARCHAR(10) NOT NULL UNIQUE,
-	dataNascimento  	DATE,
-	estadoCivil	VARCHAR(15) NOT NULL,              
+	cpf			    VARCHAR(13) NOT NULL UNIQUE,
+	rg			    VARCHAR(10) NOT NULL UNIQUE,
+	dataNascimento  DATE,
+	estadoCivil	    VARCHAR(15) NOT NULL,              
   	logradouro      VARCHAR(40) NOT NULL,
   	numResidencia   INTEGER NOT NULL,
  	complemento     VARCHAR(15),
@@ -16,10 +16,10 @@ CREATE TABLE proj.tb_funcionario(
   	cidade          VARCHAR(15) NOT NULL,
   	cep             VARCHAR(9) NOT NULL,
   	estado          VARCHAR(2) NOT NULL,
-	codCargo	INTEGER,
+	codCargo	    INTEGER,
 	cargaHoraria	NUMERIC,
-	salario		NUMERIC(7,2),
-	idTag		VARCHAR(20) UNIQUE,
+	salario		    NUMERIC(7,2),
+	idTag		    VARCHAR(20) UNIQUE,
   	admissao        DATE NOT NULL,
   	demissao        DATE,
   	CONSTRAINT pk_func_userID PRIMARY KEY(userID)
