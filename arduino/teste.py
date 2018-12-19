@@ -35,7 +35,7 @@ def existe(lista, _id):
                 return False
 
 def calcHoras(lista):
-        p1 = comvert(lista[3],lista[2])
+        p1 = convert(lista[3],lista[2])
         p2 = convert(lista[5],lista[4])
         return p1+p2
 
@@ -49,7 +49,7 @@ docs = []
 sql = 'SELECT (nome,sobrenome,salario) FROM proj.tb_funcionario WHERE userID = {}'
 for _id in ids:
         for i in range(len(rows)):
-                if rows[i][0] == _ids:
+                if rows[i][0] == _id:
                         horas += calcHoras(rows[i])
 
         aux = query(sql.format(_id))
