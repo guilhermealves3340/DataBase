@@ -18,7 +18,6 @@ cur = conn.cursor()
 myclient = MongoClient("mongodb://localhost:27017/")
 
 db = myclient["tesla"]
-
 col = db['horas']
 
 sql = 'SELECT * FROM proj.tb_pontos'
@@ -27,18 +26,24 @@ rows = cur.fetchall()
 conn.commit()
 cur.close()
 
+def existe(lista, _id):
+        try:
+                lista.index(_id)
+        except:
+                return False
 
-month = str(datetime.now())[5:7]
-for i in rows:
-    if  month == i[1][5:7]:
-        id_ = i[0]
-        p1 = i[1] + ' '+ i[2]
-        p2 = i[1] + ' '+ i[3]
-        p3 = i[1] + ' '+ i[4]
-        p4 = i[1] + ' '+ i[5]
+def calcHoras(lista):
+        p1 = comvert(lista[3],lista[2])
+        p2 = convert(lista[5],lista[4])
+        return p1+p2
 
-        hr = str(convert(p1,p2) + convert(p3,p4))
-        doc = {'_id': id_, 'qtd': hr}
-        col.insert_one(doc)
+ids = []
+for i in range(len(rows)):
+        if existe(ids,rows[i][0]) == False:
+                ids.append(rows[i][0])
 
-
+horas = 
+for _id in ids:
+        for i in range(len(rows)):
+                if rows[i][0] == _ids:
+                        horas += calcHoras(rows[i])
