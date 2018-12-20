@@ -36,11 +36,14 @@ def calcHoras(lista):
         p2 = difHoras(datetime.combine(lista[1],lista[5]),datetime.combine(lista[1],lista[4]))
         return p1+p2
 
-while True:
-
+def drop():
     db = myclient["tesla"]
     col = db['horas']
     col.drop()
+g=True
+while g:
+
+#    drop()
 
     db = myclient["tesla"]
     col = db['horas']
@@ -69,8 +72,34 @@ while True:
 
             info = query('select nome,sobrenome,salario,cargaHoraria from proj.tb_funcionario where userID = {} '.format(_id))
             print(info[0][0])
-            func = dict(_id=_id,nome=info[0][0],sobrenome=info[0][1],salario=float(info[0][2]),cargaHoraria=float(info[0][3]),horas_compridas=str(horas))
-            docs.append(func)
+            func = dict(nome=info[0][0],sobrenome=info[0][1],salario=float(info[0][2]),cargaHoraria=float(info[0][3]),horas_compridas=str(horas))
+        docs.append(func)
+
+    #ol.insert_many(docs)
+    #print(docs)
+
+    d = myclient["tesla"]
+    c = db['horas']
+    for i in docs:
+        c.insert_one(i)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<<<<<<< HEAD
         col.insert_many(docs)
+=======
+""
+>>>>>>> 0e2b271b1eab95f1f14ae91850ffcf1564fada53
