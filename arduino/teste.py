@@ -4,9 +4,7 @@ from datetime import datetime
 import json
 
 
-def convert(y,x):
-    x = datetime.strptime(x,'%Y-%m-%d %H:%M:%S')
-    y = datetime.strptime(y,'%Y-%m-%d %H:%M:%S')
+def difHoras(y,x):
     return y - x
 
 # Conect Postgres
@@ -35,24 +33,32 @@ def existe(lista, _id):
                 return False
 
 def calcHoras(lista):
-        p1 = convert(lista[3],lista[2])
-        p2 = convert(lista[5],lista[4])
+        p1 = difHoras(datetime.combine(lista[1],lista[3]),datetime.combine(lista[1],lista[2]))
+        p2 = difHoras(datetime.combine(lista[1],lista[5]),datetime.combine(lista[1],lista[4]))
         return p1+p2
+
 
 ids = []
 for i in range(len(rows)):
         if existe(ids,rows[i][0]) == False:
                 ids.append(rows[i][0])
 
-horas = 0
+print(len(ids))
+horas = datetime.now()
+horas = horas - horas
 docs = []
 sql = 'SELECT (nome,sobrenome,salario) FROM proj.tb_funcionario WHERE userID = {}'
+rows = query('SELECT * FROM proj.tb_pontos')
+print(len(rows))
 for _id in ids:
         for i in range(len(rows)):
                 if rows[i][0] == _id:
-                        horas += calcHoras(rows[i])
+                        horas = horas + calcHoras(rows[i])
 
         aux = query(sql.format(_id))
-        func = dict(_id=_id, nome=aux[0],sobrenome=aux[1],salario=aux[2])
-        docs.append(func)
+        print(aux[0])
 
+        """func = dict(_id=_id, nome=aux[0],sobrenome=aux[1],salario=aux[2],horas_comprimentos=str(horas))
+        docs.append(func)
+print(docs)
+"""
