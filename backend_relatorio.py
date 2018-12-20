@@ -9,7 +9,7 @@ def difHoras(y,x):
 
 
 # Conect Postgres
-conn = pg.connect("dbname=Engenharia user=postgres password=1997")
+conn = pg.connect("dbname=db_trabalho user=postgres password=postgresql123")
 
 def query(sql):
         cur = conn.cursor()
@@ -73,4 +73,4 @@ while True:
             docs.append(func)
 
 
-    col.insert_many(docs)
+        col.insert_many(docs)
