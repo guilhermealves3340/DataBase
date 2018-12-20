@@ -10,15 +10,18 @@ def difHoras(y,x):
 # Conect Postgres
 conn = pg.connect("dbname=Engenharia user=postgres password=1997")
 
-def query(sql):
+def query(sql,op):
         cur = conn.cursor()
         cur.execute(sql)
-        rows = cur.fetchall()
+        if op == 1:
+            rows = cur.fetchall()
+        else:
+            rows = cur.fetchone()
         conn.commit()
         cur.close()
         return rows
 
-rows = query('SELECT * FROM proj.tb_pontos')
+rows = query('SELECT * FROM proj.tb_pontos',1)
 
 # Conect MongoDB
 myclient = MongoClient("mongodb://localhost:27017/")
@@ -37,40 +40,28 @@ def calcHoras(lista):
         p2 = difHoras(datetime.combine(lista[1],lista[5]),datetime.combine(lista[1],lista[4]))
         return p1+p2
 
-
+# Listando todos os ids da tb pontos
 ids = []
 for i in range(len(rows)):
         if existe(ids,rows[i][0]) == False:
                 ids.append(rows[i][0])
 
-print(len(ids))
 horas = datetime.now()
 horas = horas - horas
 docs = []
-sql = 'SELECT (nome,sobrenome,salario,cargaHoraria)'
+sql = 'SELECT nome,sobrenome,salario,cargaHoraria FROM proj.tb_funcionario WHERE userID = {} '
 
-
-
-
-
-
-
-
-
-
-
-sql = 'SELECT (nome,sobrenome,salario) FROM proj.tb_funcionario WHERE userID = {}'
-rows = query('SELECT * FROM proj.tb_pontos')
-print(len(rows))
 for _id in ids:
-        for i in range(len(rows)):
-                if rows[i][0] == _id:
-                        horas = horas + calcHoras(rows[i])
+    # Somando a carga horaria de cada userID
+    for i in rows:
+        if _id == i[0]:
+            horas += calcHoras(i)
 
-        aux = query(sql.format(_id))
-        print(aux[0])
+    # Montando o json
 
-        """func = dict(_id=_id, nome=aux[0],sobrenome=aux[1],salario=aux[2],horas_comprimentos=str(horas))
-        docs.append(func)
-print(docs)
-"""
+    info = query(sql.format(_id),2)
+
+    print(info[0][0])
+
+class Informacoes(self,_id):
+    
