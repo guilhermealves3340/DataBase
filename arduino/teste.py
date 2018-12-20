@@ -47,6 +47,18 @@ print(len(ids))
 horas = datetime.now()
 horas = horas - horas
 docs = []
+sql = 'SELECT (nome,sobrenome,salario,cargaHoraria)'
+
+
+
+
+
+
+
+
+
+
+
 sql = 'SELECT (nome,sobrenome,salario) FROM proj.tb_funcionario WHERE userID = {}'
 rows = query('SELECT * FROM proj.tb_pontos')
 print(len(rows))
