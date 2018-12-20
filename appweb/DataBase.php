@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
     class DataBase {
         private $host = 'localhost';
         private $port = '5050';
@@ -17,5 +18,10 @@
 
             return $con;
         }
+=======
+    function conecta_banco(){
+       $con = pg_connect("host=localhost port=5432 dbname=db_trabalho user=postgres password=postgresql123") or die('Conexao Falou');
+       return $con;
+>>>>>>> 8c0b20a0215ad38f9b70471cc20b1de5057dd494
     }
-?>
+   ?>

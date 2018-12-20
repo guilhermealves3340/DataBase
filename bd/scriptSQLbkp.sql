@@ -1,7 +1,7 @@
 CREATE SCHEMA proj;
 
 CREATE TABLE proj.tb_funcionario(
-	userID		    	INTEGER SERIAL,
+	userID		    	SERIAL,
 	codCargo		    INTEGER NOT NULL,
 	estadoCivil		  INTEGER NOT NULL,
 	cargaHoraria	  NUMERIC NOT NULL,
@@ -9,7 +9,7 @@ CREATE TABLE proj.tb_funcionario(
 	ativo			      BOOLEAN NOT NULL,
 	idTag			      INTEGER NOT NULL,
   admissao        DATE NOT NULL,
-  demissao        DATE
+  demissao        DATE,
 	nome			      VARCHAR(20) NOT NULL,
 	sobreNome		    VARCHAR(35) NOT NULL,
 	cpf				      VARCHAR(13) NOT NULL,
@@ -54,16 +54,14 @@ CREATE TABLE proj.tb_cargos(
 );
 
 
-CREATE TABLE teste.pontos(
+CREATE TABLE proj.pontos(
 	userID		INTEGER NOT NULL,
 	dia			  DATE NOT NULL,
 	entrada		TIME NOT NULL,
 	almoco		TIME,
 	retorno		TIME,
-	saida		  TIME,
-	ativo		  BOOLEAN
+	saida		  TIME
 );
-
 
 DROP SCHEMA proj;
 DROP TABLE proj.tb_funcionario;
