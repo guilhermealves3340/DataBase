@@ -3,9 +3,9 @@ CREATE SCHEMA proj;
 CREATE TABLE proj.tb_funcionario(
 	userID		    	INTEGER SERIAL,
 	codCargo		    INTEGER NOT NULL,
-	estadoCivil		  INTEGER NOT NULL,              
+	estadoCivil		  INTEGER NOT NULL,
 	cargaHoraria	  NUMERIC NOT NULL,
-	salario			    NUMERIC(7,2) NOT NULL,
+	salario			    NUMERIC(7,2) NOTmysqli_set_charset NULL,
 	ativo			      BOOLEAN NOT NULL,
 	idTag			      INTEGER NOT NULL,
   admissao        DATE NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE proj.tb_contato(
 
 CREATE TABLE proj.tb_login(
     password        VARCHAR(15) NOT NULL,
-    login            TEXT NOT NULL,          
+    login            TEXT NOT NULL,
     userID          INTEGER NOT NULL,
     CONSTRAINT fk_login_userID FOREIGN KEY(userID) REFERENCES proj.tb_funcionario(userID)
 );
@@ -71,5 +71,3 @@ DROP TABLE proj.tb_infopessoais;
 
 
 -- USAR UMA TABELA PARA ALMOCO, SAIDA, RETORNO E ENTRADA
-
-

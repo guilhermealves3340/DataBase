@@ -2,13 +2,13 @@ DROP SCHEMA proj;
 CREATE SCHEMA proj;
 
 CREATE TABLE proj.tb_funcionario(
-  	userID		    INTEGER Serial,
+  	userID		    Serial,
 	nome			VARCHAR(20) NOT NULL,
 	sobreNome		VARCHAR(35) NOT NULL,
 	cpf			    VARCHAR(13) NOT NULL UNIQUE,
 	rg			    VARCHAR(10) NOT NULL UNIQUE,
 	dataNascimento  DATE,
-	estadoCivil	    VARCHAR(15) NOT NULL,              
+	estadoCivil	    VARCHAR(15) NOT NULL,
   	logradouro      VARCHAR(40) NOT NULL,
   	numResidencia   INTEGER NOT NULL,
  	complemento     VARCHAR(15),
@@ -35,7 +35,7 @@ CREATE TABLE proj.tb_contato(
 
 CREATE TABLE proj.tb_login(
   password        VARCHAR(32) NOT NULL,
-  login            TEXT NOT NULL,          
+  login            TEXT NOT NULL,
   userID          INTEGER NOT NULL,
   CONSTRAINT fk_login_userID FOREIGN KEY(userID) REFERENCES proj.tb_funcionario(userID)
 );

@@ -3,6 +3,6 @@
 - Mongo:
         Database: 'tela'
         Collection: 'horas'
-        Keys: _id, nome, sobrenome, horas_compridas, salario
+        Keys: _id, nome, sobrenome, cargaHoraria, horas_compridas, salario
 
 - Informações acima útil para a geração do relatório (Pablo)
