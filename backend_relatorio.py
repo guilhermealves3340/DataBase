@@ -75,10 +75,7 @@ while True:
             func = dict(_id=_id,nome=info[0][0],sobrenome=info[0][1],salario=float(info[0][2]),cargaHoraria=float(info[0][3]),horas_compridas=str(horas))
             docs.append(func)
 
-        try:
-            col.insert_many(docs)
-        except:
-            pass
+        col.insert_many(docs)
 
 
 
