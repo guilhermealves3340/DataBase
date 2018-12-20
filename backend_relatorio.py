@@ -40,8 +40,8 @@ def drop():
     db = myclient["tesla"]
     col = db['horas']
     col.drop()
-
-while True:
+g=True
+while g:
 
 #    drop()
 
@@ -72,11 +72,16 @@ while True:
 
             info = query('select nome,sobrenome,salario,cargaHoraria from proj.tb_funcionario where userID = {} '.format(_id))
             print(info[0][0])
-            func = dict(_id=_id,nome=info[0][0],sobrenome=info[0][1],salario=float(info[0][2]),cargaHoraria=float(info[0][3]),horas_compridas=str(horas))
-            docs.append(func)
+            func = dict(nome=info[0][0],sobrenome=info[0][1],salario=float(info[0][2]),cargaHoraria=float(info[0][3]),horas_compridas=str(horas))
+        docs.append(func)
 
-        col.insert_many(docs)
+    #ol.insert_many(docs)
+    #print(docs)
 
+    d = myclient["tesla"]
+    c = db['horas']
+    for i in docs:
+        c.insert_one(i)
 
 
 
