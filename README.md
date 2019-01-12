@@ -23,11 +23,6 @@ A página website também fornece uma visualização dos pontos mensais de um de
 * CSS 3
 * Python 3
 
-## Dependeências:
-
-* Psycopg2
-* PySerial
-
 ## Esquemático do Projeto
 
 <p align="center">
